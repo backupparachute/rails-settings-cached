@@ -1,7 +1,8 @@
 module RailsSettings
   class Base < Settings
+    TTL = 5.minutes
     def rewrite_cache
-      Rails.cache.write(cache_key, value)
+      Rails.cache.write(cache_key, value, expires_in: TTL)
     end
 
     def expire_cache
@@ -33,7 +34,7 @@ module RailsSettings
 
       def [](key)
         return super(key) unless rails_initialized?
-        val = Rails.cache.fetch(cache_key(key, @object)) do
+        val = Rails.cache.fetch(cache_key(key, @object), expires_in: TTL) do
           super(key)
         end
         val
@@ -42,7 +43,7 @@ module RailsSettings
       # set a setting value by [] notation
       def []=(var_name, value)
         super
-        Rails.cache.write(cache_key(var_name, @object), value)
+        Rails.cache.write(cache_key(var_name, @object), value, expires_in: TTL)
         value
       end
 
