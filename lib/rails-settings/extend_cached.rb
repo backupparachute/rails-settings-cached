@@ -31,9 +31,7 @@ module RailsSettings
       ScopedSettings.for_thing(self, @local_cache_prefix)
     end
 
-    def local_cache_prefix(&block)
-      @local_cache_prefix = block
-    end
+    @local_cache_prefix_proc = -> {}
 
   end
 end
