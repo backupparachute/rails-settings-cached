@@ -28,7 +28,7 @@ module RailsSettings
     end
 
     def settings(&block)
-      ScopedSettings.for_thing(self, &block)
+      BlockScopedSettings.for_thing(self, &block)
     end
 
   end
