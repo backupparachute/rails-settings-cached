@@ -1,5 +1,5 @@
 module RailsSettings
-  module ExtendCached
+  module ExtendCachedExplicit
     extend ActiveSupport::Concern
 
     included do
@@ -27,8 +27,7 @@ module RailsSettings
       }
     end
 
-    def settings
-      block = settings_cache_prefix
+    def settings(&block)
       BlockScopedSettings.for_thing(self, &block)
     end
 
