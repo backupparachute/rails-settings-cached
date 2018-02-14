@@ -27,15 +27,9 @@ module RailsSettings
       }
     end
 
-    def settings
-      if @local_cache_prefix
-        ScopedSettings.for_thing(self, &@local_cache_prefix)
-      else
-        ScopedSettings.for_thing(self, @local_cache_prefix)
-      end
+    def settings(&block)
+      ScopedSettings.for_thing(self, block)
     end
-
-    @local_cache_prefix_proc = -> {}
 
   end
 end
