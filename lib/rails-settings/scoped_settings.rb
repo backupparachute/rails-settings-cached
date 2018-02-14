@@ -1,7 +1,8 @@
 module RailsSettings
   class ScopedSettings < CachedSettings
-    def self.for_thing(object)
+    def self.for_thing(object, &block)
       @object = object
+      @cache_prefix = block
       self
     end
 
