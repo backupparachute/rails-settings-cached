@@ -1,7 +1,7 @@
 module RailsSettings
   class << self
     def version
-      "0.5.7.1"
+      "0.5.7.2"
     end
   end
 end

@@ -28,11 +28,10 @@ module RailsSettings
     end
 
     def settings
-      ScopedSettings.for_thing(self, @local_cache_prefix)
+      ScopedSettings.for_thing(self, local_cache_prefix)
     end
 
-    def local_cache_prefix(&block)
-      @local_cache_prefix = block
+    def local_cache_prefix
     end
 
   end
